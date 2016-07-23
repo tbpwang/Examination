@@ -1,6 +1,6 @@
 <%-- Created by Administrator at 16-7-9 下午4:08 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="common/inc.jsp"%>
+<%@ include file="common/inc.jsp" %>
 <html>
 <head>
     <title>user page</title>
@@ -13,5 +13,27 @@
 User: ${sessionScope.user.username}
 <hr>
 <a href="${ctx}/user/logout">LOG OUT</a>
+<hr>
+<form action="" method="post">
+    <table border="1">
+        <tr>
+            <th>SELECT</th>
+            <th>TITLE</th>
+            <th>TIME</th>
+            <th>TEACHER</th>
+            <th>SCORE</th>
+        </tr>
+        <c:forEach var="course" items="${sessionScope.list}" varStatus="vs">
+            <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>${course.title}</td>
+                <td>${course.time}</td>
+                <td>${course.teacher}</td>
+                <td>${course.score}</td>
+            </tr>
+        </c:forEach>
+    </table>
+    <input type="submit" value="SUBMIT">
+</form>
 </body>
 </html>

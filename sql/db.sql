@@ -11,6 +11,22 @@ CREATE TABLE examination.user (
 );
 
 INSERT INTO examination.user (username, password) VALUES ('admin', '123');
+INSERT INTO examination.user (username, password, role) VALUES ('user1', '123', 'user');
+INSERT INTO examination.user (username, password, role) VALUES ('user2', '123', 'user');
+INSERT INTO examination.user (username, password, role) VALUES ('user3', '123', 'user');
+
+# course
+DROP TABLE IF EXISTS examination.course;
+CREATE TABLE examination.course (
+  id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  title   VARCHAR(255),
+  time    VARCHAR(255),
+  teacher VARCHAR(255),
+  score   INT
+);
 
 SELECT *
 FROM examination.user;
+
+SELECT *
+FROM examination.course;

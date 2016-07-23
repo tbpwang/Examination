@@ -31,10 +31,10 @@ public class UserController extends BaseController {
             session.setAttribute("user", user);
             String role = user.getRole();
             if (role.equals("admin")) {
-                return "redirect:/admin.jsp";
+                return "redirect:/course/list";
             }
             if (role.equals("user")) {
-                return "redirect:/user.jsp";
+                return "redirect:/course/userList";
             }
 
         }
