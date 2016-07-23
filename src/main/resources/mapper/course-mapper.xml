@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="course">
+    <select id="list" resultType="course">
+        SELECT *
+        FROM examination.course
+        ORDER BY id
+    </select>
+    <select id="search" resultType="course">
+        SELECT *
+        FROM examination.course
+        WHERE id = #{id}
+    </select>
+    <update id="modify">
+        UPDATE examination.course
+        SET
+            title = #{title}, 
+            time = #{time}, 
+            teacher = #{teacher}, 
+            score = #{score}
+        WHERE id = #{id}
+    </update>
+    <delete id="remove">
+        DELETE FROM examination.course
+        WHERE id = #{id}
+    </delete>
+    <insert id="create" parameterType="course" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO examination.course (
+            title, 
+            time, 
+            teacher, 
+            score
+        )
+        VALUES (
+            #{title}, 
+            #{time}, 
+            #{teacher}, 
+            #{score}
+        );
+    </insert>
+</mapper>
