@@ -47,4 +47,12 @@ public class UserController extends BaseController {
         session.invalidate();
         return "redirect:/index.jsp";
     }
+
+    @RequestMapping("selectCourse")
+    public String selectCourse(int[] ids) {
+        for (int id : ids) {
+            System.out.println(id);
+        }
+        return null;
+    }
 }
