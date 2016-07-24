@@ -26,22 +26,22 @@ CREATE TABLE examination.course (
 );
 
 # studentCourse
-DROP TABLE IF EXISTS examination.studentCourse;
-CREATE TABLE examination.studentCourse (
+DROP TABLE IF EXISTS examination.student_course;
+CREATE TABLE examination.student_course (
   id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   studentId INT UNSIGNED,
   courseId  INT UNSIGNED
 );
 
-ALTER TABLE examination.studentcourse
+ALTER TABLE examination.student_course
   ADD CONSTRAINT
-  fk_studentCourse_studentId
+  fk_student_course_studentId
 FOREIGN KEY (studentId)
 REFERENCES examination.user (id);
 
-ALTER TABLE examination.studentcourse
+ALTER TABLE examination.student_course
   ADD CONSTRAINT
-  fk_studentCourse_courseId
+  fk_student_course_courseId
 FOREIGN KEY (courseId)
 REFERENCES examination.course (id);
 
@@ -50,3 +50,17 @@ FROM examination.user;
 
 SELECT *
 FROM examination.course;
+
+SELECT *
+FROM examination.student_course;
+
+SELECT c.title, u.username
+FROM examination.user u JOIN examination.course c JOIN examination.student_course s
+ON u.id = s.studentId AND c.id = s.courseId
+WHERE c.id = 1;
+
+
+SELECT u.username, c.title
+FROM examination.user u JOIN examination.course c JOIN examination.student_course s
+    ON u.id = s.studentId AND c.id = s.courseId
+WHERE u.id = 3

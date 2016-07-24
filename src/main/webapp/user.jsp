@@ -14,7 +14,7 @@ User: ${sessionScope.user.username}
 <hr>
 <a href="${ctx}/user/logout">LOG OUT</a>
 <hr>
-<form action="${ctx}/user/selectCourse" method="post">
+<form action="${ctx}/studentcourse/selectCourse" method="post">
     <table border="1">
         <tr>
             <th>SELECT</th>
