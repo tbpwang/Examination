@@ -54,13 +54,21 @@ FROM examination.course;
 SELECT *
 FROM examination.student_course;
 
-SELECT c.title, u.username
-FROM examination.user u JOIN examination.course c JOIN examination.student_course s
-ON u.id = s.studentId AND c.id = s.courseId
+SELECT
+  c.title,
+  u.username
+FROM examination.user u
+  JOIN examination.course c
+  JOIN examination.student_course s
+    ON u.id = s.studentId AND c.id = s.courseId
 WHERE c.id = 1;
 
 
-SELECT u.username, c.title
-FROM examination.user u JOIN examination.course c JOIN examination.student_course s
+SELECT
+  u.username,
+  c.title
+FROM examination.user u
+  JOIN examination.course c
+  JOIN examination.student_course s
     ON u.id = s.studentId AND c.id = s.courseId
 WHERE u.id = 3
