@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
+
 /**
  * Created at 221
  * 16-7-9 上午11:18.
@@ -46,5 +48,16 @@ public class UserController extends BaseController {
     public String logout() {
         session.invalidate();
         return "redirect:/index.jsp";
+    }
+
+    @RequestMapping("/selectCourse")
+    public String selectCourse() {
+        String[] ids = request.getParameterValues("ids");
+        for (String id : ids) {
+            System.out.println(id);
+        }
+        int studentId = ((User)session.getAttribute("user")).getId();
+        System.out.println(studentId);
+        return null;
     }
 }

@@ -25,6 +25,26 @@ CREATE TABLE examination.course (
   score   INT
 );
 
+# studentCourse
+DROP TABLE IF EXISTS examination.studentCourse;
+CREATE TABLE examination.studentCourse (
+  id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  studentId INT UNSIGNED,
+  courseId  INT UNSIGNED
+);
+
+ALTER TABLE examination.studentcourse
+  ADD CONSTRAINT
+  fk_studentCourse_studentId
+FOREIGN KEY (studentId)
+REFERENCES examination.user (id);
+
+ALTER TABLE examination.studentcourse
+  ADD CONSTRAINT
+  fk_studentCourse_courseId
+FOREIGN KEY (courseId)
+REFERENCES examination.course (id);
+
 SELECT *
 FROM examination.user;
 

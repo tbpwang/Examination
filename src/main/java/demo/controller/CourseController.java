@@ -26,6 +26,12 @@ public class CourseController extends BaseController {
         return "redirect:/course/list.jsp";
     }
 
+    @RequestMapping("userList")
+    private String userList() {
+        session.setAttribute("list", courseService.list());
+        return "redirect:/user.jsp";
+    }
+
     @RequestMapping("search/{id}")
     private String search(@PathVariable("id") Integer id) {
         session.setAttribute("course", courseService.search(id));

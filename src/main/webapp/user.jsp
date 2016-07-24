@@ -14,7 +14,7 @@ User: ${sessionScope.user.username}
 <hr>
 <a href="${ctx}/user/logout">LOG OUT</a>
 <hr>
-<form action="" method="post">
+<form action="${ctx}/user/selectCourse" method="post">
     <table border="1">
         <tr>
             <th>SELECT</th>
@@ -25,7 +25,7 @@ User: ${sessionScope.user.username}
         </tr>
         <c:forEach var="course" items="${sessionScope.list}" varStatus="vs">
             <tr>
-                <td><input type="checkbox" name=""></td>
+                <td><input type="checkbox" name="ids" value="${course.id}"></td>
                 <td>${course.title}</td>
                 <td>${course.time}</td>
                 <td>${course.teacher}</td>
