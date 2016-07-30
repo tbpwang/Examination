@@ -17,10 +17,10 @@
     <update id="modify">
         UPDATE examination.course
         SET
-            title = #{title}, 
-            time = #{time}, 
-            teacher = #{teacher}, 
-            score = #{score}
+            title   = #{title},
+            time    = #{time},
+            teacher = #{teacher},
+            score   = #{score}
         WHERE id = #{id}
     </update>
     <delete id="remove">
@@ -29,16 +29,32 @@
     </delete>
     <insert id="create" parameterType="course" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO examination.course (
-            title, 
-            time, 
-            teacher, 
+            title,
+            time,
+            teacher,
             score
         )
         VALUES (
-            #{title}, 
-            #{time}, 
-            #{teacher}, 
+            #{title},
+            #{time},
+            #{teacher},
             #{score}
         );
     </insert>
+
+    <resultMap id="course_students_map" type="course">
+        <result property="title" column="title"/>
+        <collection property="students" ofType="user">
+            <result property="username" column="username"/>
+        </collection>
+    </resultMap>
+    <select id="course_students" resultMap="course_students_map">
+        SELECT
+            c.title,
+            u.username
+        FROM examination.user u
+            JOIN examination.course c
+            JOIN examination.student_course s
+                ON u.id = s.studentId AND c.id = s.courseId;
+    </select>
 </mapper>

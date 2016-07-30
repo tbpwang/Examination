@@ -12,6 +12,8 @@
         <hr/>
         <c:import url="create.jsp"/>
         <hr/>
+        <a href="${ctx}/course/courseStudents">查询选课结果</a>
+        <hr>
         <table border="1">
             <tr>
                 <th>INDEX</th>

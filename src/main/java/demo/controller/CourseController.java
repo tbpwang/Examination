@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("course")
 public class CourseController extends BaseController {
@@ -48,5 +50,12 @@ public class CourseController extends BaseController {
     private String remove(@PathVariable("id") Integer id) {
         courseService.remove(id);
         return "redirect:/course/list";
+    }
+
+    @RequestMapping("courseStudents")
+    private String courseStudents() {
+        List<Course> courses = courseService.query("course.course_students", null);
+        session.setAttribute("courses", courses);
+        return "redirect:/admin.jsp";
     }
 }

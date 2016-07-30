@@ -10,10 +10,10 @@ CREATE TABLE examination.user (
   role     VARCHAR(255) DEFAULT 'admin'
 );
 
+INSERT INTO examination.user (username, password, role) VALUES ('s1', '123', 'user');
+INSERT INTO examination.user (username, password, role) VALUES ('s2', '123', 'user');
+INSERT INTO examination.user (username, password, role) VALUES ('s3', '123', 'user');
 INSERT INTO examination.user (username, password) VALUES ('admin', '123');
-INSERT INTO examination.user (username, password, role) VALUES ('user1', '123', 'user');
-INSERT INTO examination.user (username, password, role) VALUES ('user2', '123', 'user');
-INSERT INTO examination.user (username, password, role) VALUES ('user3', '123', 'user');
 
 # course
 DROP TABLE IF EXISTS examination.course;
@@ -25,6 +25,10 @@ CREATE TABLE examination.course (
   score   INT
 );
 
+INSERT INTO examination.course VALUES (NULL, 'course1', 'time1', 'teacher1', 1);
+INSERT INTO examination.course VALUES (NULL, 'course2', 'time2', 'teacher3', 2);
+INSERT INTO examination.course VALUES (NULL, 'course3', 'time3', 'teacher3', 3);
+
 # studentCourse
 DROP TABLE IF EXISTS examination.student_course;
 CREATE TABLE examination.student_course (
@@ -32,6 +36,13 @@ CREATE TABLE examination.student_course (
   studentId INT UNSIGNED,
   courseId  INT UNSIGNED
 );
+
+INSERT INTO examination.student_course VALUE (NULL, 1, 1);
+INSERT INTO examination.student_course VALUE (NULL, 2, 1);
+INSERT INTO examination.student_course VALUE (NULL, 2, 2);
+INSERT INTO examination.student_course VALUE (NULL, 3, 1);
+INSERT INTO examination.student_course VALUE (NULL, 3, 2);
+INSERT INTO examination.student_course VALUE (NULL, 3, 3);
 
 ALTER TABLE examination.student_course
   ADD CONSTRAINT
@@ -60,8 +71,7 @@ SELECT
 FROM examination.user u
   JOIN examination.course c
   JOIN examination.student_course s
-    ON u.id = s.studentId AND c.id = s.courseId
-WHERE c.id = 1;
+    ON u.id = s.studentId AND c.id = s.courseId;
 
 
 SELECT
@@ -71,4 +81,10 @@ FROM examination.user u
   JOIN examination.course c
   JOIN examination.student_course s
     ON u.id = s.studentId AND c.id = s.courseId
-WHERE u.id = 3
+WHERE u.id = 3;
+
+SELECT *
+FROM examination.course;
+
+SELECT *
+FROM examination.user;

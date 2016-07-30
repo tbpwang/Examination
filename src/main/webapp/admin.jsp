@@ -13,5 +13,27 @@
 Admin: ${sessionScope.user.username}
 <hr>
 <a href="${ctx}/user/logout">LOG OUT</a>
+<hr>
+<table border="1">
+    <tr>
+        <th>course title</th>
+        <th>student name</th>
+        <th>counter</th>
+    </tr>
+    <c:forEach var="course" items="${sessionScope.courses}">
+        <tr>
+            <td>${course.title}</td>
+            <td>
+                <c:set var="counter"/>
+                <c:forEach var="student" items="${course.students}">
+                    <c:set var="counter" value="${counter + 1}"/>
+                    ${student.username}
+                </c:forEach>
+            </td>
+            <td>${counter}</td>
+        </tr>
+    </c:forEach>
+</table>
+
 </body>
 </html>
