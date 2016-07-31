@@ -7,6 +7,24 @@
         INSERT INTO examination.user VALUES (NULL, #{username}, #{password}, 'user')
     </insert>
     <select id="login" parameterType="user" resultType="user">
-        SELECT * FROM examination.user WHERE username = #{username} AND password = #{password}
+        SELECT *
+        FROM examination.user
+        WHERE username = #{username} AND password = #{password}
+    </select>
+
+    <resultMap id="student_courses_map" type="user">
+        <result property="username" column="username"/>
+        <collection property="courses" ofType="course">
+            <result property="title" column="title"/>
+        </collection>
+    </resultMap>
+
+    <select id="student_courses" resultMap="student_courses_map">
+        SELECT
+            u.username,
+            c.title
+        FROM examination.user u INNER JOIN examination.course c
+            INNER JOIN examination.student_course s
+                ON u.id = s.studentId AND c.id = s.courseId
     </select>
 </mapper>

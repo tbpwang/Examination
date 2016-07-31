@@ -80,8 +80,7 @@ SELECT
 FROM examination.user u
   JOIN examination.course c
   JOIN examination.student_course s
-    ON u.id = s.studentId AND c.id = s.courseId
-WHERE u.id = 3;
+    ON u.id = s.studentId AND c.id = s.courseId;
 
 SELECT *
 FROM examination.course;

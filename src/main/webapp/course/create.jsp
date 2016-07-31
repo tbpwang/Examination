@@ -5,7 +5,6 @@
         <title>course add page</title>
     </head>
     <body>
-        <h1>Course Create</h1>
         <form action="${ctx}/course/create" method="post">
             TITLE: <input name="title"><br>
             TIME: <input name="time"><br>

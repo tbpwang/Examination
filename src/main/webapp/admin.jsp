@@ -34,6 +34,26 @@ Admin: ${sessionScope.user.username}
         </tr>
     </c:forEach>
 </table>
-
+<hr>
+<table border="1">
+    <tr>
+        <th>student name</th>
+        <th>course title</th>
+        <th>counter</th>
+    </tr>
+    <c:forEach var="student" items="${sessionScope.students}">
+        <tr>
+            <td>${student.username}</td>
+            <td>
+                <c:set var="counter"/>
+                <c:forEach var="course" items="${student.courses}">
+                    <c:set var="counter" value="${counter + 1}"/>
+                    ${course.title}
+                </c:forEach>
+            </td>
+            <td>${counter}</td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

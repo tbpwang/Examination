@@ -49,4 +49,10 @@ public class UserController extends BaseController {
         session.invalidate();
         return "redirect:/index.jsp";
     }
+
+    @RequestMapping("studentCourses")
+    public String studentCourses() {
+        session.setAttribute("students", userService.query("user.student_courses", null));
+        return "redirect:/admin.jsp";
+    }
 }
