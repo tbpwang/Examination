@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="record">
+    <select id="list" resultType="record">
+        SELECT *
+        FROM examination.record
+        ORDER BY id
+    </select>
+    <select id="search" resultType="record">
+        SELECT *
+        FROM examination.record
+        WHERE id = #{id}
+    </select>
+    <update id="modify">
+        UPDATE examination.record
+        SET
+            date = #{date}, 
+            content = #{content}, 
+            userId = #{userId}
+        WHERE id = #{id}
+    </update>
+    <delete id="remove">
+        DELETE FROM examination.record
+        WHERE id = #{id}
+    </delete>
+    <insert id="create" parameterType="record" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO examination.record (
+            date, 
+            content, 
+            userId
+        )
+        VALUES (
+            #{date}, 
+            #{content}, 
+            #{userId}
+        );
+    </insert>
+</mapper>
