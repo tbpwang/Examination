@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created at 221
@@ -15,5 +16,9 @@ public class User extends BaseModel {
     private Integer id;
     private String username;
     private String password;
+    private String truename;
+    private String team;
     private String role;
+
+    private List<Record> records;
 }

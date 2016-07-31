@@ -13,7 +13,5 @@
     <input type="submit" value="LOGIN">
 </form>
 ${requestScope.message}
-<hr>
-<a href="${ctx}/register.jsp">REGISTER</a>
 </body>
 </html>

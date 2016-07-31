@@ -17,10 +17,10 @@ public class UserController extends BaseController {
     @Autowired
     public UserService userService;
 
-    @RequestMapping("register")
-    public String register(User user) {
+    @RequestMapping("create")
+    public String create(User user) {
         userService.create(user);
-        return "redirect:/index.jsp";
+        return "redirect:/admin.jsp";
     }
 
     @RequestMapping("login")
@@ -33,10 +33,12 @@ public class UserController extends BaseController {
             if (role.equals("admin")) {
                 return "redirect:/admin.jsp";
             }
-            if (role.equals("user")) {
-                return "redirect:/user.jsp";
+            if (role.equals("employee")) {
+                return "redirect:/record/list";
             }
-
+            if (role.equals("leader")) {
+                return "redirect:/record/leaderList";
+            }
         }
         request.setAttribute("message", "invalid username or password.");
         return "index";

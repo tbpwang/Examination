@@ -4,9 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
     <insert id="create" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO examination.user VALUES (NULL, #{username}, #{password}, 'user')
+        INSERT INTO examination.user VALUES (NULL, #{username}, #{password}, #{truename}, #{team}, #{role})
     </insert>
     <select id="login" parameterType="user" resultType="user">
-        SELECT * FROM examination.user WHERE username = #{username} AND password = #{password}
+        SELECT *
+        FROM examination.user
+        WHERE username = #{username} AND password = #{password}
+    </select>
+
+    <resultMap id="employee_records_map" type="user">
+        <result property="truename" column="truename"/>
+        <collection property="records" ofType="record">
+            <result property="date" column="date"/>
+            <result property="content" column="content"/>
+        </collection>
+    </resultMap>
+    <select id="employee_records" parameterType="user" resultMap="employee_records_map">
+        SELECT
+            u.truename,
+            r.date,
+            r.content
+        FROM examination.user u INNER JOIN examination.record r
+                ON r.userId = u.id
+        WHERE u.id = #{id}
     </select>
 </mapper>
