@@ -10,7 +10,7 @@
     <body>
         <h1>${model} List</h1>
         <hr/>
-        <c:import url="${'$'}{ctx}/${model?lower_case}/create.jsp"/>
+        <c:import url="${'$'}{ctx}/create.jsp"/>
         <hr/>
         <table border="1">
             <tr>

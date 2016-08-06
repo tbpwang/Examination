@@ -31,7 +31,8 @@ public class UserController extends BaseController {
             session.setAttribute("user", user);
             String role = user.getRole();
             if (role.equals("admin")) {
-                return "redirect:/admin.jsp";
+                session.setAttribute("userInfos", userService.query("user.user_infos", null));
+                return "redirect:/user/list";
             }
             if (role.equals("user")) {
                 return "redirect:/user.jsp";
@@ -46,5 +47,11 @@ public class UserController extends BaseController {
     public String logout() {
         session.invalidate();
         return "redirect:/index.jsp";
+    }
+
+    @RequestMapping("list")
+    public String list() {
+        session.setAttribute("users", userService.list());
+        return "redirect:/admin.jsp";
     }
 }

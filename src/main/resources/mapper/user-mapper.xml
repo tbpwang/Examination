@@ -9,4 +9,27 @@
     <select id="login" parameterType="user" resultType="user">
         SELECT * FROM examination.user WHERE username = #{username} AND password = #{password}
     </select>
+    <select id="list" resultType="user">
+        SELECT * FROM examination.user WHERE role = 'user'
+    </select>
+
+    <resultMap id="user_infos_map" type="user">
+        <result property="username" column="username"/>
+        <collection property="infos" ofType="info">
+            <id property="id" column="id"/>
+            <result property="date" column="date"/>
+            <result property="baoxian" column="baoxian"/>
+            <result property="gongjijin" column="gongjijin"/>
+        </collection>
+    </resultMap>
+    <select id="user_infos" resultMap="user_infos_map">
+        SELECT
+            u.username,
+            i.id,
+            i.date,
+            i.baoxian,
+            i.gongjijin
+        FROM examination.user u INNER JOIN examination.info i
+        ON u.id = i.userId
+    </select>
 </mapper>
