@@ -36,4 +36,5 @@ SELECT
   r.content
 FROM examination.user u INNER JOIN examination.record r
     ON r.userId = u.id
-WHERE u.team = 'team1'
+  WHERE u.id = 2;
+# WHERE u.team = 'team1'

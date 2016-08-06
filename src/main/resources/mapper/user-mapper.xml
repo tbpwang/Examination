@@ -13,19 +13,33 @@
     </select>
 
     <resultMap id="employee_records_map" type="user">
+        <id property="id" column="id"/>
         <result property="truename" column="truename"/>
         <collection property="records" ofType="record">
+            <id property="id" column="record_id"/>
             <result property="date" column="date"/>
             <result property="content" column="content"/>
         </collection>
     </resultMap>
     <select id="employee_records" parameterType="user" resultMap="employee_records_map">
         SELECT
+            u.id,
             u.truename,
+            r.id AS record_id,
             r.date,
             r.content
         FROM examination.user u INNER JOIN examination.record r
                 ON r.userId = u.id
         WHERE u.id = #{id}
+    </select>
+
+    <select id="team_records" parameterType="user" resultMap="employee_records_map">
+        SELECT
+        u.truename,
+        r.date,
+        r.content
+        FROM examination.user u INNER JOIN examination.record r
+        ON r.userId = u.id
+        WHERE u.team = #{team}
     </select>
 </mapper>

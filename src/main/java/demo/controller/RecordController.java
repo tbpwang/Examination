@@ -29,6 +29,14 @@ public class RecordController extends BaseController {
         return "redirect:list";
     }
 
+    @RequestMapping("leaderCreate")
+    private String leaderCreate(Record record) {
+        User user = (User) session.getAttribute("user");
+        record.setUserId(user.getId());
+        recordService.create(record);
+        return "redirect:leaderList";
+    }
+
     @RequestMapping("list")
     private String list() {
         User user = (User) session.getAttribute("user");
@@ -40,7 +48,7 @@ public class RecordController extends BaseController {
     @RequestMapping("leaderList")
     private String leaderList() {
         User user = (User) session.getAttribute("user");
-        List<User> users =  userService.query("user.employee_records", user);
+        List<User> users =  userService.query("user.team_records", user);
         session.setAttribute("users", users);
         return "redirect:/leader.jsp";
     }
