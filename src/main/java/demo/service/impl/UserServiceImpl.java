@@ -30,4 +30,10 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
         }
         return null;
     }
+
+    @Override
+    public User queryByDate(User user, String min, String max) {
+        user = super.genericDao.
+        return null;
+    }
 }

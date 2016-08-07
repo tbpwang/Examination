@@ -29,3 +29,6 @@ REFERENCES examination.user (id);
 
 SELECT *
 FROM examination.user;
+
+SELECT *
+FROM examination.info;

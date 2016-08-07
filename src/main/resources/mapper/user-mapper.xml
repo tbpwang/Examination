@@ -7,10 +7,14 @@
         INSERT INTO examination.user VALUES (NULL, #{username}, #{password}, 'user')
     </insert>
     <select id="login" parameterType="user" resultType="user">
-        SELECT * FROM examination.user WHERE username = #{username} AND password = #{password}
+        SELECT *
+        FROM examination.user
+        WHERE username = #{username} AND password = #{password}
     </select>
     <select id="list" resultType="user">
-        SELECT * FROM examination.user WHERE role = 'user'
+        SELECT *
+        FROM examination.user
+        WHERE role = 'user'
     </select>
 
     <resultMap id="user_infos_map" type="user">
@@ -30,6 +34,26 @@
             i.baoxian,
             i.gongjijin
         FROM examination.user u INNER JOIN examination.info i
-        ON u.id = i.userId
+                ON u.id = i.userId
+    </select>
+    <select id="single_user_infos" parameterType="user" resultMap="user_infos_map">
+        SELECT
+            u.username,
+            i.date,
+            i.baoxian,
+            i.gongjijin
+        FROM examination.user u INNER JOIN examination.info i
+                ON u.id = i.userId
+        WHERE u.id = #{id}
+    </select>
+    <select id="query_by_date" parameterType="" resultMap="user_infos_map">
+        SELECT
+            u.username,
+            i.date,
+            i.baoxian,
+            i.gongjijin
+        FROM examination.user u INNER JOIN examination.info i
+                ON u.id = i.userId
+        WHERE u.id = #{id} AND (i.date BETWEEN #{min} AND #{max})
     </select>
 </mapper>

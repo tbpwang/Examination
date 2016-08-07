@@ -35,6 +35,7 @@ public class UserController extends BaseController {
                 return "redirect:/user/list";
             }
             if (role.equals("user")) {
+                session.setAttribute("userInfos", userService.query("user.single_user_infos", user));
                 return "redirect:/user.jsp";
             }
 
@@ -53,5 +54,12 @@ public class UserController extends BaseController {
     public String list() {
         session.setAttribute("users", userService.list());
         return "redirect:/admin.jsp";
+    }
+
+    @RequestMapping("queryByDate")
+    public String queryByDate(String min, String max) {
+        System.out.println(min + "-" + max);
+        session.setAttribute("userInfos", userService.query("user.single_user_infos", ));
+        return "redirect:/user.jsp";
     }
 }
