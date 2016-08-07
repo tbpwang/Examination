@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created at 221
@@ -53,5 +54,10 @@ public class GenericDaoImpl<T extends Serializable, ID extends Number> implement
     @Override
     public void remove(ID id) {
         sqlSession.delete(namespace.concat("remove"), id);
+    }
+
+    @Override
+    public List<T> queryByMap(String statement, Map map) {
+        return sqlSession.selectList(statement, map);
     }
 }

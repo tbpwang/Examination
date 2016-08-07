@@ -5,14 +5,15 @@ import demo.service.GenericService;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created at 221
  * 16-7-16 上午11:33.
  */
-public abstract class GenericServiceImpl<T extends Serializable, ID extends Number> implements GenericService<T, ID> {
+abstract class GenericServiceImpl<T extends Serializable, ID extends Number> implements GenericService<T, ID> {
 
-    protected GenericDao<T, ID> genericDao;
+    GenericDao<T, ID> genericDao;
 
     public abstract void setGenericDao(GenericDao<T, ID> genericDao);
 
@@ -44,5 +45,10 @@ public abstract class GenericServiceImpl<T extends Serializable, ID extends Numb
     @Override
     public void remove(ID id) {
         genericDao.remove(id);
+    }
+
+    @Override
+    public List<T> queryByMap(String statement, Map map) {
+        return genericDao.queryByMap(statement, map);
     }
 }
