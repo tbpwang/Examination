@@ -6,7 +6,9 @@ import demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created at 221
@@ -28,12 +30,6 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
             user = users.get(0);
             return user;
         }
-        return null;
-    }
-
-    @Override
-    public User queryByDate(User user, String min, String max) {
-        user = super.genericDao.
         return null;
     }
 }

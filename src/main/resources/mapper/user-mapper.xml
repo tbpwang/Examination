@@ -46,7 +46,7 @@
                 ON u.id = i.userId
         WHERE u.id = #{id}
     </select>
-    <select id="query_by_date" parameterType="" resultMap="user_infos_map">
+    <select id="query_by_date" parameterType="hashmap" resultMap="user_infos_map">
         SELECT
             u.username,
             i.date,
@@ -55,5 +55,16 @@
         FROM examination.user u INNER JOIN examination.info i
                 ON u.id = i.userId
         WHERE u.id = #{id} AND (i.date BETWEEN #{min} AND #{max})
+    </select>
+    <select id="query_by_name_and_date" parameterType="hashmap" resultMap="user_infos_map">
+        SELECT
+            u.username,
+            i.id,
+            i.date,
+            i.baoxian,
+            i.gongjijin
+        FROM examination.user u INNER JOIN examination.info i
+                ON u.id = i.userId
+        WHERE u.username = #{username} AND (i.date BETWEEN #{min} AND #{max})
     </select>
 </mapper>

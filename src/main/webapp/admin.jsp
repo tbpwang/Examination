@@ -17,7 +17,14 @@ Admin: ${sessionScope.user.username}
 <hr>
 <a href="${ctx}/user/logout">LOG OUT</a>
 <hr>
-<h1>Info Create</h1>
+<h1>Info Create</h1><hr>
+<form action="${ctx}/user/queryByNameAndDate" method="post">
+    <input type="text" name="username" placeholder="姓名">
+    <input type="text" name="min" placeholder="起始月份">
+    <input type="text" name="max" placeholder="截止月份">
+    <input type="submit" value="查询">
+</form>
+<hr>
 <form action="${ctx}/info/create" method="post">
     USER: <select name="userId">
     <c:forEach var="user" items="${sessionScope.users}">

@@ -5,6 +5,7 @@ import demo.service.GenericService;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created at 221
@@ -44,5 +45,9 @@ public abstract class GenericServiceImpl<T extends Serializable, ID extends Numb
     @Override
     public void remove(ID id) {
         genericDao.remove(id);
+    }
+
+    public List<T> queryByMap(String statement, Map<String, Object> map) {
+        return genericDao.queryByMap(statement, map);
     }
 }

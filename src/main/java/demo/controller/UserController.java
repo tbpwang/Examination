@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
+
 /**
  * Created at 221
  * 16-7-9 上午11:18.
@@ -58,8 +60,22 @@ public class UserController extends BaseController {
 
     @RequestMapping("queryByDate")
     public String queryByDate(String min, String max) {
-        System.out.println(min + "-" + max);
-        session.setAttribute("userInfos", userService.query("user.single_user_infos", ));
+        User user = (User) session.getAttribute("user");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", user.getId());
+        map.put("min", min);
+        map.put("max", max);
+        session.setAttribute("userInfos", userService.queryByMap("query_by_date", map));
         return "redirect:/user.jsp";
+    }
+
+    @RequestMapping("queryByNameAndDate")
+    public String queryByNameAndDate(String username, String min, String max) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("username", username);
+        map.put("min", min);
+        map.put("max", max);
+        session.setAttribute("userInfos", userService.queryByMap("query_by_name_and_date", map));
+        return "redirect:/admin.jsp";
     }
 }

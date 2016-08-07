@@ -9,7 +9,4 @@ import demo.model.User;
 public interface UserService extends GenericService<User, Integer> {
 
     User login(User user);
-
-
-    User queryByDate(User user, String min, String max);
 }
